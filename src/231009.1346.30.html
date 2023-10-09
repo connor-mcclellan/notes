@@ -1,0 +1,558 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>basic bash scripting &#8212; Assorted Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_font.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_font.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_font.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'src/231009.1346.30';</script>
+    <link rel="canonical" href="https://connor-mcclellan.github.io/notes/src/231009.1346.30.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Command-line Tips and Tricks" href="231009.1343.33.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../genindex.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Assorted Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../genindex.html">
+                    Index
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Oct 9 - Astro Grad Lunch Talk</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="230926.1053.56.html">Server Computing at UVA Astronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="231009.1343.33.html">Command-line Tips and Tricks</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">basic <code class="docutils literal notranslate"><span class="pre">bash</span></code> scripting</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/connor-mcclellan/notes" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/src/231009.1346.30.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>basic bash scripting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-example">Simple example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate-example-adding-variables">Intermediate example: Adding variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-example-conditionals">Advanced example: Conditionals</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <center><p style="color:#777777">231009.1346.30.md</p></center><br>
+<section class="tex2jax_ignore mathjax_ignore" id="basic-bash-scripting">
+<h1>basic <code class="docutils literal notranslate"><span class="pre">bash</span></code> scripting<a class="headerlink" href="#basic-bash-scripting" title="Permalink to this heading">#</a></h1>
+<div class="warning admonition">
+<p class="admonition-title">Work in Progress</p>
+<p>These notes are under construction for a future presentation and are only a rough draft at this point.</p>
+</div>
+<p>It takes a lot of time to type out repetitive commands and search through your history every time you want to repeat something you’ve done before. It can be helpful to organize your research directories with <code class="docutils literal notranslate"><span class="pre">exec.sh</span></code>, <code class="docutils literal notranslate"><span class="pre">run.sh</span></code>, or <code class="docutils literal notranslate"><span class="pre">plot.sh</span></code> scripts, which perform a certain repeatable part of your analysis.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p><strong>As a rule, never put <code class="docutils literal notranslate"><span class="pre">rm</span></code> commands in bash scripts.</strong></p>
+<p>If you misplace a wildcard (<code class="docutils literal notranslate"><span class="pre">*</span></code>) or an earlier command fails, putting you in the wrong directory when you <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-r</span> <span class="pre">./*</span></code>, you could quite literally delete your entire computer.</p>
+<p>Design your <code class="docutils literal notranslate"><span class="pre">bash</span></code> scripts to handle <em>a single task</em> of file I/O, and leave the garbage collection to the user afterwards. Be cautious of <code class="docutils literal notranslate"><span class="pre">.sh</span></code> scripts growing too large and trying to do too much at once.</p>
+</div>
+<section id="simple-example">
+<h2>Simple example<a class="headerlink" href="#simple-example" title="Permalink to this heading">#</a></h2>
+<p>Simple bash scripting can be accomplished just by putting a series of <code class="docutils literal notranslate"><span class="pre">bash</span></code> commands into a <code class="docutils literal notranslate"><span class="pre">.sh</span></code> file, separated by newlines.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+mkdir<span class="w"> </span><span class="s2">&quot;./run/eddingtonwind_test&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;./run/eddingtonwind_test&quot;</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>./athena-multigroup/bin/athena<span class="w"> </span>-i<span class="w"> </span>./run/athinput.eddingtonwind<span class="w"> </span>&gt;&gt;<span class="w"> </span>log.out
+</pre></div>
+</div>
+<p>Then you can run this script with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute the script exec.sh in bash</span>
+bash<span class="w"> </span>exec.sh
+</pre></div>
+</div>
+<p>Alternatively, you could tell your computer it can actually run this text file as an executable. Just change the permissions accordingly:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add execute permission to the file exec.sh</span>
+chmod<span class="w"> </span>+x<span class="w"> </span>exec.sh
+</pre></div>
+</div>
+<p>Then run your script with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute the script exec.sh in bash</span>
+./exec.sh
+</pre></div>
+</div>
+</section>
+<section id="intermediate-example-adding-variables">
+<h2>Intermediate example: Adding variables<a class="headerlink" href="#intermediate-example-adding-variables" title="Permalink to this heading">#</a></h2>
+<p>Variables are declared with equals signs and accessed with dollar signs. Be mindful that bash doesn’t like whitespace—keep whitespace out of your variable declarations!</p>
+<p>Here’s a more advanced example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">athinput</span><span class="o">=</span><span class="s2">&quot;./run/athinput.eddingtonwind&quot;</span>
+<span class="nv">problem_id</span><span class="o">=</span><span class="sb">`</span>cat<span class="w"> </span><span class="nv">$athinput</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-7<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="sb">`</span>
+<span class="nv">basename</span><span class="o">=</span><span class="sb">`</span>grep<span class="w"> </span>-oP<span class="w"> </span><span class="s1">&#39;(?&lt;==\ ).*?(?=\ #)&#39;</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$problem_id</span><span class="s2">&quot;</span><span class="sb">`</span>
+
+mkdir<span class="w"> </span><span class="s2">&quot;/PellaShared/bcm2vn/Documents/athena-multigroup/run/</span><span class="nv">$basename</span><span class="s2">&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;./</span><span class="nv">$basename</span><span class="s2">&quot;</span>
+
+<span class="nv">filename</span><span class="o">=</span><span class="s2">&quot;/PellaShared/bcm2vn/Documents/athena-multigroup/run/</span><span class="nv">$basename</span><span class="s2">/</span><span class="nv">$basename</span><span class="s2">.txt&quot;</span>
+cat<span class="w"> </span>/PellaShared/bcm2vn/Documents/athena-multigroup/run/athinput.eddingtonwind<span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$filename</span>
+
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>/PellaShared/bcm2vn/Documents/athena-multigroup/bin/athena<span class="w"> </span>-i<span class="w"> </span>/PellaShared/bcm2vn/Documents/athena-multigroup/run/athinput.eddingtonwind<span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$filename</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-example-conditionals">
+<h2>Advanced example: Conditionals<a class="headerlink" href="#advanced-example-conditionals" title="Permalink to this heading">#</a></h2>
+<p>It’s best practice to have your execution script halt if one of your commands doesn’t execute sucessfully. The syntax becomes a little messy, but this is technically the most careful way of bash scripting so you don’t do unneccessary work or accidentally end up deleting something.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">source</span><span class="w"> </span>ENVARS
+
+<span class="c1"># Note: lowercase bash variables are defined here</span>
+<span class="c1">#       UPPERCASE bash variables are defined in scripts/ENVARS</span>
+
+<span class="nb">pushd</span><span class="w"> </span><span class="nv">$BASEDIR</span>
+<span class="nv">timestamp</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%y%m%d.%H%M.%S<span class="k">)</span>
+<span class="nv">datadir</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$BASEDIR</span><span class="s2">/data/</span><span class="nv">$timestamp</span><span class="s2">&quot;</span>
+<span class="k">if</span><span class="w"> </span>mkdir<span class="w"> </span><span class="nv">$datadir</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BOLD</span><span class="si">}</span><span class="s2">[run.sh]</span><span class="si">${</span><span class="nv">NC</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">COLOR</span><span class="si">}</span><span class="s2">Created directory </span><span class="nv">$datadir</span><span class="si">${</span><span class="nv">NC</span><span class="si">}</span><span class="s2">\n&quot;</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nb">popd</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="k">if</span><span class="w"> </span>python<span class="w"> </span>scripts/athinput.py<span class="w"> </span>--gz<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>mv<span class="w"> </span><span class="nv">$BASEDIR</span>/scripts/athinput.eddingtonwind<span class="w"> </span><span class="nv">$datadir</span>
+<span class="w">  </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BOLD</span><span class="si">}</span><span class="s2">[run.sh]</span><span class="si">${</span><span class="nv">NC</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">COLOR</span><span class="si">}</span><span class="s2">Created athinput file </span><span class="nv">$datadir</span><span class="s2">/athinput.eddingtonwind</span><span class="si">${</span><span class="nv">NC</span><span class="si">}</span><span class="s2">\n&quot;</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nb">popd</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BOLD</span><span class="si">}</span><span class="s2">[run.sh]</span><span class="si">${</span><span class="nv">NC</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">COLOR</span><span class="si">}</span><span class="s2">Running code...</span><span class="si">${</span><span class="nv">NC</span><span class="si">}</span><span class="s2">\n&quot;</span>
+<span class="nv">athinput</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$datadir</span><span class="s2">/athinput.eddingtonwind&quot;</span>
+<span class="k">if</span><span class="w"> </span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">1</span><span class="w"> </span>athena/bin/athena<span class="w"> </span>-i<span class="w"> </span><span class="nv">$athinput</span><span class="w"> </span>-d<span class="w"> </span><span class="nv">$datadir</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>mv<span class="w"> </span><span class="nv">$BASEDIR</span>/Rad_angles.txt<span class="w"> </span><span class="nv">$datadir</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nb">popd</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="nb">popd</span>
+</pre></div>
+</div>
+<span class="target" id="id1"></span></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./src"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="231009.1343.33.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Command-line Tips and Tricks</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-example">Simple example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate-example-adding-variables">Intermediate example: Adding variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-example-conditionals">Advanced example: Conditionals</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Connor McClellan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

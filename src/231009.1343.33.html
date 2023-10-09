@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Command-line Tips and Tricks &#8212; Assorted Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_font.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_font.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_font.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'src/231009.1343.33';</script>
+    <link rel="canonical" href="https://connor-mcclellan.github.io/notes/src/231009.1343.33.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="basic bash scripting" href="231009.1346.30.html" />
+    <link rel="prev" title="Server Computing at UVA Astronomy" href="230926.1053.56.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../genindex.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Assorted Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../genindex.html">
+                    Index
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Oct 9 - Astro Grad Lunch Talk</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="230926.1053.56.html">Server Computing at UVA Astronomy</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Command-line Tips and Tricks</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="231009.1346.30.html">basic <code class="docutils literal notranslate"><span class="pre">bash</span></code> scripting</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/connor-mcclellan/notes" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/src/231009.1343.33.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Command-line Tips and Tricks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Command-line Tips and Tricks</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-htop">top, htop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-light-weight-text-editor">A Light-weight Text Editor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bash-fu"><code class="docutils literal notranslate"><span class="pre">bash</span></code>-fu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ctrl-r">Ctrl-r</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#piping-console-output-to-files">Piping console output to files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tail-f">tail -F</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#glossary">Glossary</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <center><p style="color:#777777">231009.1343.33.md</p></center><br>
+<section class="tex2jax_ignore mathjax_ignore" id="command-line-tips-and-tricks">
+<h1>Command-line Tips and Tricks<a class="headerlink" href="#command-line-tips-and-tricks" title="Permalink to this heading">#</a></h1>
+<p>Here are some things I couldn’t live without while working on a remote server.</p>
+<section id="top-htop">
+<h2>top, htop<a class="headerlink" href="#top-htop" title="Permalink to this heading">#</a></h2>
+<p>These are tools to check the utilization of your CPU cores.</p>
+<p><code class="docutils literal notranslate"><span class="pre">top</span></code></p>
+<ul class="simple">
+<li><p>shows all running processes, how long they’ve been running, and the users that started them.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">htop</span></code></p>
+<ul class="simple">
+<li><p>shows current utilization of all available cores.</p></li>
+</ul>
+<p>Either of these programs can be passed the <code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">your_username</span></code> command-line argument to show only processes user “your_username” is running, which is especially useful on a shared computing network.</p>
+</section>
+<section id="a-light-weight-text-editor">
+<h2>A Light-weight Text Editor<a class="headerlink" href="#a-light-weight-text-editor" title="Permalink to this heading">#</a></h2>
+<p><strong><code class="docutils literal notranslate"><span class="pre">vim</span></code></strong> is my text editor of choice, but several others fill the same niche:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nano</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">emacs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">atom</span></code></p></li>
+</ul>
+<p>It is possible to mount a remote server to a local IDE, but I don’t have much experience doing this and have always preferred just using <code class="docutils literal notranslate"><span class="pre">vi</span></code> or <code class="docutils literal notranslate"><span class="pre">vim</span></code>.</p>
+<aside class="topic">
+<p class="topic-title">Why use a command-line text editor?</p>
+<ol class="arabic simple">
+<li><p>They come pre-installed on most servers</p>
+<ul class="simple">
+<li><p>This is crucial—as the user, you will not have root access to install packages yourself.</p></li>
+</ul>
+</li>
+<li><p>They can be used without the need for a graphical window (in case <a class="reference internal" href="#term-X-forwarding"><span class="xref std std-term">X-forwarding</span></a> is not possible)</p></li>
+<li><p>They run very fast via an SSH</p></li>
+</ol>
+</aside>
+</section>
+<section id="bash-fu">
+<h2><code class="docutils literal notranslate"><span class="pre">bash</span></code>-fu<a class="headerlink" href="#bash-fu" title="Permalink to this heading">#</a></h2>
+<p>A colloquialism for mastery of the terminal. There are a lot of neat commands I’ve only learned about from others sharing their tips and tricks. Here are some of my favorites:</p>
+<section id="ctrl-r">
+<h3>Ctrl-r<a class="headerlink" href="#ctrl-r" title="Permalink to this heading">#</a></h3>
+<p>Searches your bash history via autocomplete. Start typing a command after pressing <code class="docutils literal notranslate"><span class="pre">&lt;Ctrl&gt;</span> <span class="pre">&lt;r&gt;</span></code> and your most recent command starting with what you’ve typed so far will be pulled up.</p>
+<p>Note that this changes your “location” in your bash history, so if you cancel the autocomplete searcn and use the up and down arrowkeys to flip through your history, you will be at the last searched location instead of your most recently-issued command.</p>
+</section>
+<section id="piping-console-output-to-files">
+<h3>Piping console output to files<a class="headerlink" href="#piping-console-output-to-files" title="Permalink to this heading">#</a></h3>
+<p>Instead of printing runtime console outputs to the terminal, you can send <code class="docutils literal notranslate"><span class="pre">stdout</span></code> and <code class="docutils literal notranslate"><span class="pre">stderr</span></code> to a text file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">16</span><span class="w"> </span>my_executable<span class="w"> </span>&gt;<span class="w"> </span>out.log
+</pre></div>
+</div>
+<p>Note that this will overwrite the contents of <code class="docutils literal notranslate"><span class="pre">out.log</span></code>, if that file already exists. To append to a file rather than overwriting it, use two <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> symbols:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">16</span><span class="w"> </span>my_executable<span class="w"> </span>&gt;&gt;<span class="w"> </span>out.log
+</pre></div>
+</div>
+<p>It doesn’t matter what extension you give the files on most systems. Pick whatever convention you like best.</p>
+<p>You can also split up <code class="docutils literal notranslate"><span class="pre">stdout</span></code> (standard out) and <code class="docutils literal notranslate"><span class="pre">stderr</span></code> (standard error) if you want to separate warnings and error messages from print statements. This can be helpful if there’s a lot of information in <code class="docutils literal notranslate"><span class="pre">stdout</span></code> that you don’t want to go searching through to find <code class="docutils literal notranslate"><span class="pre">stderr</span></code> content, since in the example above, both are combined.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">16</span><span class="w"> </span>my_executable<span class="w"> </span><span class="m">1</span>&gt;out.log<span class="w"> </span><span class="m">2</span>&gt;err.log
+</pre></div>
+</div>
+</section>
+<section id="tail-f">
+<h3>tail -F<a class="headerlink" href="#tail-f" title="Permalink to this heading">#</a></h3>
+<p>You may know that <code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">myfile.txt</span></code> will print the last 10 or so lines of a file to the terminal. But did you know that</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tail<span class="w"> </span>-F<span class="w"> </span>myfile.txt
+</pre></div>
+</div>
+<p>will <em>continue</em> to print out the last 10 lines of a file as it’s updated?</p>
+<aside class="topic">
+<p class="topic-title">Primary use case for tail -F</p>
+<p>You want to run a job and preserve the console output as a log file for record-keeping. But, you also want to check in on the job while it’s running to make sure everything goes smoothly.</p>
+<p>Start your job and pipe the console output to a file <code class="docutils literal notranslate"><span class="pre">log.out</span></code>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-np</span> <span class="pre">4</span> <span class="pre">my_executable</span> <span class="pre">-a</span> <span class="pre">my_argument</span> <span class="pre">&gt;&gt;</span> <span class="pre">log.out</span></code></p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-F</span></code> (“tail follow”) to follow the last 10 lines of the log as they’re updated:</p>
+<p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-F</span> <span class="pre">log.out</span></code></p>
+</aside>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="glossary">
+<h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this heading">#</a></h1>
+<dl class="glossary">
+<dt id="term-X-forwarding">X-forwarding<a class="headerlink" href="#term-X-forwarding" title="Permalink to this term">#</a></dt><dd><p>An SSH option that enables server-side graphical user interface (GUI) windows to open on the client-side.</p>
+<ul class="simple">
+<li><p>Complex graphical applications typically run very slowly, as information must be communicated over the secure connection each time the window is updated</p></li>
+<li><p>Best for opening pre-generated images in a simple image viewer, or quickly looking at a python plot</p></li>
+</ul>
+<p><strong>Commands</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start an X-forwarded SSH session</span>
+ssh<span class="w"> </span>-X<span class="w"> </span>username@myserver.astro.virginia.edu
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start an X-forwarded SSH session (&quot;trusted&quot;, lower security)</span>
+ssh<span class="w"> </span>-Y<span class="w"> </span>username@myserver.astro.virginia.edu
+</pre></div>
+</div>
+</dd>
+</dl>
+<span class="target" id="id1"></span></section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./src"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="230926.1053.56.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Server Computing at UVA Astronomy</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="231009.1346.30.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">basic <code class="docutils literal notranslate"><span class="pre">bash</span></code> scripting</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Command-line Tips and Tricks</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-htop">top, htop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-light-weight-text-editor">A Light-weight Text Editor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bash-fu"><code class="docutils literal notranslate"><span class="pre">bash</span></code>-fu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ctrl-r">Ctrl-r</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#piping-console-output-to-files">Piping console output to files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tail-f">tail -F</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#glossary">Glossary</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Connor McClellan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
