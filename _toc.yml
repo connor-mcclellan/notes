@@ -1,6 +1,8 @@
 format: jb-book
 root: genindex
 parts:
-  - caption: Astro Grad Lunch Server Computing
+  - caption: Oct 9 - Astro Grad Lunch Talk
     chapters:
-      - file: 230926.1053.56.md
+      - file: src/230926.1053.56.md
+      - file: src/231009.1343.33.md
+      - file: src/231009.1346.30.md
