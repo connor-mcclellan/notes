@@ -1,0 +1,692 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Server Computing at UVA Astronomy &#8212; Research Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom_font.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom_font.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom_font.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '230926.1053.56';</script>
+    <link rel="canonical" href="https://connor-mcclellan.github.io/notes/230926.1053.56.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Index" href="genindex.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="genindex.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Research Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="genindex.html">
+                    Index
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Astro Grad Lunch Server Computing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Server Computing at UVA Astronomy</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/connor-mcclellan/notes" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/230926.1053.56.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Server Computing at UVA Astronomy</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-terminology">Computing Terminology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-dell-evaluation-server">Shared “Dell Evaluation” Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-access">How to Access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-should-i-use-this">When should I use this?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etiquette">Etiquette</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls">Common pitfalls</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-modules">Missing modules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#killed-jobs">Killed jobs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trouble-with-path-or-ld-library-path">Trouble with <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> or <code class="docutils literal notranslate"><span class="pre">$LD_LIBRARY_PATH</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <center><p style="color:#777777">230926.1053.56.md</p></center><br>
+<aside class="topic">
+<p class="topic-title">Aims of this document</p>
+<ol class="arabic simple">
+<li><p>Provide specific information about the Astro department’s <strong>shared Dell Evaluation Server</strong></p>
+<ul class="simple">
+<li><p>Differences between cluster computing and server computing</p></li>
+<li><p>How to access</p></li>
+</ul>
+</li>
+<li><p>Provide general information about best practices for running code on a server, for those who have access to one</p>
+<ul class="simple">
+<li><p>Do’s and Don’t’s</p></li>
+</ul>
+</li>
+</ol>
+</aside>
+<section class="tex2jax_ignore mathjax_ignore" id="server-computing-at-uva-astronomy">
+<h1>Server Computing at UVA Astronomy<a class="headerlink" href="#server-computing-at-uva-astronomy" title="Permalink to this heading">#</a></h1>
+<section id="computing-terminology">
+<h2>Computing Terminology<a class="headerlink" href="#computing-terminology" title="Permalink to this heading">#</a></h2>
+<dl class="glossary">
+<dt id="term-cluster">cluster<a class="headerlink" href="#term-cluster" title="Permalink to this term">#</a></dt><dd><p>A set of interlinked computers that function as a single system.</p>
+<p><img alt="" src="_images/231002.1151.50.png" /></p>
+<ul class="simple">
+<li><p>Splits access into a “head node” and “compute nodes”</p>
+<ul>
+<li><p>Head node is used for user login, basic navigation, code setup</p></li>
+<li><p>Compute nodes are used for massively parallel jobs</p></li>
+</ul>
+</li>
+<li><p>Has some way to submit job scripts, which are automatically sorted into a queue based on computing demand</p></li>
+</ul>
+</dd>
+<dt id="term-server">server<a class="headerlink" href="#term-server" title="Permalink to this term">#</a></dt><dd><p>A single computer accessible to many users, typically via SSH connection.</p>
+<p><img alt="" src="_images/231002.1147.41.png" /></p>
+<ul class="simple">
+<li><p>Does not generally have a queue or batch submission process</p></li>
+<li><p>Typically has a large number of computing cores</p></li>
+<li><p>Does not have a head node or compute nodes</p>
+<ul>
+<li><p>User login and computational work are both performed by the same computer</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="shared-dell-evaluation-server">
+<h2>Shared “Dell Evaluation” Server<a class="headerlink" href="#shared-dell-evaluation-server" title="Permalink to this heading">#</a></h2>
+<p>A computing resource purchased with departmental ETF funds. <strong>It is intended for heavy-compute users in the Astronomy department.</strong></p>
+<p>The server computer has 128 CPU cores, and <em>only a couple hundred GB of shared storage space.</em> It is intended for computation, not storage!</p>
+<section id="how-to-access">
+<h3>How to Access<a class="headerlink" href="#how-to-access" title="Permalink to this heading">#</a></h3>
+<p>Try the following from a command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>your_computing_id@delleval-gb1.astro.virginia.edu
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If you’re prompted for a password, try logging in with your UVA credentials. It is likely Pete has already set up an account for you.</p></li>
+<li><p>If you get an error message or cannot log in, email Pete and ask for an account to be set up for you on the Dell server. Pete’s email: <a class="reference external" href="mailto:pbn9j&#37;&#52;&#48;virginia&#46;edu">pbn9j<span>&#64;</span>virginia<span>&#46;</span>edu</a></p></li>
+</ul>
+</section>
+<section id="when-should-i-use-this">
+<h3>When should I use this?<a class="headerlink" href="#when-should-i-use-this" title="Permalink to this heading">#</a></h3>
+<p><img alt="" src="_images/231009.0926.43.png" /></p>
+<p>Other use-cases:</p>
+<ul class="simple">
+<li><p>Your laptop doesn’t have enough memory to hold a large dataset in RAM simultaneously</p></li>
+</ul>
+</section>
+</section>
+<section id="etiquette">
+<h2>Etiquette<a class="headerlink" href="#etiquette" title="Permalink to this heading">#</a></h2>
+<div class="danger admonition">
+<p class="admonition-title">DANGER</p>
+<p><strong>Usage of this server is completely unregulated. Anyone can use any amount of cores for any amount of time, without consequence. As a communal resource, it is susceptible to <em>Tragedy of the Commons</em>.</strong></p>
+</div>
+<ul>
+<li><p>Run parallel jobs on the server that would otherwise overwhelm your laptop (or your department-issued desktop).</p></li>
+<li><p>Check the current utilization of the server’s cores with <code class="docutils literal notranslate"><span class="pre">htop</span></code> before starting a new job</p></li>
+<li><p><strong>Have an estimate for how long a job should run before starting it.</strong></p>
+<ul>
+<li><p>Limit your core utilization proportionally to how long your job is expected to run</p>
+<div class="tip admonition">
+<p class="admonition-title">Good</p>
+<ul class="simple">
+<li><p>Few cores for a long time</p></li>
+<li><p>Many cores for a short time</p></li>
+</ul>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Unnecessary</p>
+<ul class="simple">
+<li><p>Few cores for a short time</p></li>
+</ul>
+</div>
+<div class="error admonition">
+<p class="admonition-title">Bad</p>
+<ul class="simple">
+<li><p>Many cores for a long time</p></li>
+</ul>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Clean up suspended jobs</p>
+<ul>
+<li><p>Check your current jobs with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>top<span class="w"> </span>-u<span class="w"> </span>your_username
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Kill some job with PID “2974” by issuing the command <code class="docutils literal notranslate"><span class="pre">kill</span> <span class="pre">2974</span></code></p></li>
+<li><p>Kill all jobs started by a program “zoom” by issuing the command <code class="docutils literal notranslate"><span class="pre">killall</span> <span class="pre">-u</span> <span class="pre">your_username</span> <span class="pre">zoom</span></code></p></li>
+<li><p>Kill a stubborn process called “athena” that won’t be killed with a regular kill signal by issuing the command <code class="docutils literal notranslate"><span class="pre">killall</span> <span class="pre">-u</span> <span class="pre">your_username</span> <span class="pre">-9</span> <span class="pre">athena</span></code></p></li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">your_username</span></code> option here is <strong>crucial</strong> for <code class="docutils literal notranslate"><span class="pre">killall</span></code>. This specifies that you only want to kill processes with that name which <em>you</em> started. Otherwise, <em>all processes on the machine sharing that name will be killed</em>, regardless of who started them.</p>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Transfer your data to your personal machine as soon as your job is completed.</p></li>
+</ul>
+</section>
+<section id="common-pitfalls">
+<h2>Common pitfalls<a class="headerlink" href="#common-pitfalls" title="Permalink to this heading">#</a></h2>
+<section id="missing-modules">
+<h3>Missing modules<a class="headerlink" href="#missing-modules" title="Permalink to this heading">#</a></h3>
+<div class="danger admonition">
+<p class="admonition-title">Why isn’t my code running? Nothing seems to be installed on this computer!</p>
+<ul class="simple">
+<li><p>Compilers and executables may depend upon packages that are not loaded by default on a server or computing cluster.</p></li>
+</ul>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">You may have forgotten to load modules.</p>
+<ul class="simple">
+<li><p>Both <a class="reference internal" href="#term-server"><span class="xref std std-term">server</span></a>s and <a class="reference internal" href="#term-cluster"><span class="xref std std-term">cluster</span></a>s typically use modulefiles to manage packages like OpenMPI, HDF5, etc.</p></li>
+</ul>
+<dl class="glossary">
+<dt id="term-module">module<a class="headerlink" href="#term-module" title="Permalink to this term">#</a></dt><dd><p>A collection of libraries or packages that may be loaded by the user prior to computing.</p>
+<ul class="simple">
+<li><p>Allows the user to manage and resolve package conflicts rather than the administrator</p></li>
+<li><p>Administrator manages all modules, user may submit requests</p></li>
+<li><p>Modules are typically several years to decades out-of-date, to preserve cross-compatibility</p></li>
+</ul>
+<p>Common commands:</p>
+<ul>
+<li><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all available modules</span>
+module<span class="w"> </span>avail
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unload all currently-loaded modules</span>
+module<span class="w"> </span>purge
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="c1"># List all currently-loaded modules</span>
+<span class="w"> </span>module<span class="w"> </span>list
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="c1"># Load the module `some-module`</span>
+<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>some-module
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+</section>
+<section id="killed-jobs">
+<h3>Killed jobs<a class="headerlink" href="#killed-jobs" title="Permalink to this heading">#</a></h3>
+<div class="danger admonition">
+<p class="admonition-title">I left everything running but my job was still killed.</p>
+<ul class="simple">
+<li><p>Idle terminals will have their SSH connection closed.</p></li>
+<li><p>If your job is attached to that terminal, your job will be killed or suspended.</p></li>
+</ul>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Solution: use screen or tmux to start your job in a detatched terminal session.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">screen</span></code>: comes by default on every system</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tmux</span></code>: more modern and streamlined, but unlikely to be installed by default on older systems. Can be installed locally without root access.</p></li>
+</ul>
+</div>
+</section>
+<section id="trouble-with-path-or-ld-library-path">
+<h3>Trouble with <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> or <code class="docutils literal notranslate"><span class="pre">$LD_LIBRARY_PATH</span></code><a class="headerlink" href="#trouble-with-path-or-ld-library-path" title="Permalink to this heading">#</a></h3>
+<div class="danger admonition">
+<p class="admonition-title">My environment variables are being set inconsistently.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> is loaded on terminal initialization.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> is loaded on login shells.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">tmux</span></code> starts a <em>login shell</em> by default and will source this file. If there are conflicts between <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> and <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>, the former will overwrite the latter.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Tip</p>
+<p>When in doubt, do</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
+</pre></div>
+</div>
+<p>or whichever environment variable you are trying to set. This can still be tricky to debug sometimes—just be mindful of exactly where and how you’re setting each of your environment variables.</p>
+</div>
+<span class="target" id="id1"></span></section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="genindex.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Index</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-terminology">Computing Terminology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-dell-evaluation-server">Shared “Dell Evaluation” Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-access">How to Access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-should-i-use-this">When should I use this?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etiquette">Etiquette</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls">Common pitfalls</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-modules">Missing modules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#killed-jobs">Killed jobs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trouble-with-path-or-ld-library-path">Trouble with <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> or <code class="docutils literal notranslate"><span class="pre">$LD_LIBRARY_PATH</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Connor McClellan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

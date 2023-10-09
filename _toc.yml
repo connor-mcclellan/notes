@@ -1,6 +1,0 @@
-format: jb-book
-root: genindex
-parts:
-  - caption: Astro Grad Lunch Server Computing
-    chapters:
-      - file: 230926.1053.56.md
