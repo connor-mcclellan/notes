@@ -66,9 +66,9 @@ sphinx:
     html_css_files: ['css/custom_font.css']
     bibtex_reference_style: author_year
     bibtex_bibfiles: ['references.bib']
-#    hoverxref_roles:
-#      - term
-#    hoverxref_role_types:
-#      term: tooltip
+    hoverxref_roles:
+      - term
+    hoverxref_role_types:
+      term: tooltip
   extra_extensions:
     - sphinxcontrib.bibtex
