@@ -1,0 +1,74 @@
+# BOOK SETTINGS
+# -------------
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title       : Research Notes
+author      : Connor McClellan
+copyright   : '2023'
+# logo        : logo.png
+exclude_patterns : [_build, scripts, _static]
+
+# EXECUTION SETTINGS
+# ------------------
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: false
+  allow_errors: true
+
+# PARSE AND RENDER SETTINGS
+# -------------------------
+parse:
+  myst_enable_extensions:
+    - colon_fence
+    - deflist
+    - fieldlist
+    - dollarmath
+    - amsmath
+    - linkify
+    - tasklist
+  myst_dmath_double_inline: true # allow $$ math inline
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_engine: pdflatex
+  use_jupyterbook_latex: true
+  latex_documents:
+    targetname: book.tex
+
+# Add a bibtex file so that we can create citations
+#bibtex_bibfiles:
+#  - references.bib
+
+# LAUNCH SETTINGS
+launch_buttons:
+  notebook_interface: classic
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/connor-mcclellan/notes  # Online location of your book
+  path_to_book: 'public/'  # Optional path to your book, relative to the repository root
+  branch: main    # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  use_issues_button: false
+  use_repository_button: true
+  use_multidoc_numbering: true
+  homepage_in_navbar: true
+  baseurl: "https://connor-mcclellan.github.io/notes/"
+
+sphinx:
+  only_build_toc_files: true
+  config:
+    html_static_path: ['_static']
+    html_css_files: ['css/custom_font.css']
+    bibtex_reference_style: author_year
+    bibtex_bibfiles: ['references.bib']
+#    hoverxref_roles:
+#      - term
+#    hoverxref_role_types:
+#      term: tooltip
+  extra_extensions:
+    - sphinxcontrib.bibtex
